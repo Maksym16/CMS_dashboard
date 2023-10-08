@@ -34,3 +34,9 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Authentication
+For authentication we use clerk [DOCS](https://clerk.com/?utm_source=www.google.com&utm_medium=referral&utm_campaign=none)
+Keys for clerk pkg need to be stored in env file.
+For connecting authentication follow steps: [Next set up instraction](https://clerk.com/docs/quickstarts/nextjs)
+
