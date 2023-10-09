@@ -1,10 +1,24 @@
-import { Button } from '@/components/ui/button';
 
-export default function Home() {
+'use client';
+import { useEffect } from "react";
+
+import { useCreateProjectModal } from "@/hooks/use-store-modal";
+
+const SetupPage = () => {
+  const onOpen = useCreateProjectModal((state) => state.onOpen);
+  const isOpen = useCreateProjectModal((state) => state.isOpen);
+
+  useEffect(() => {
+    if (!isOpen) {
+      onOpen()
+    }
+  }, [isOpen, onOpen])
+  
   return (
     <div>
-      <p>Hello max</p>
-      <Button className='m-4' size="default" variant='destructive'>CLICK me</Button>
+      Root page'
     </div>
   );
 }
+
+export default SetupPage;
