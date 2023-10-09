@@ -13,10 +13,10 @@ const SetupPage = () => {
       onOpen()
     }
   }, [isOpen, onOpen])
-  
+
   return (
     <div>
-      Root page'
+      Root page
     </div>
   );
 }

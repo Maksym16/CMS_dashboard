@@ -40,3 +40,16 @@ For authentication we use clerk [DOCS](https://clerk.com/?utm_source=www.google.
 Keys for clerk pkg need to be stored in env file.
 For connecting authentication follow steps: [Next set up instraction](https://clerk.com/docs/quickstarts/nextjs)
 
+## Forms:
+Forms are tricky. They are one of the most common things you'll build in a web application, but also one of the most complex.
+
+Well-designed HTML forms are:
+Well-structured and semantically correct.
+Easy to use and navigate (keyboard).
+Accessible with ARIA attributes and proper labels.
+Has support for client and server side validation.
+Well-styled and consistent with the rest of the application.
+
+Forms are build with:
+react-hook-form - 
+zod - used for form schema validation;
