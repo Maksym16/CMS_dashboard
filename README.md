@@ -53,3 +53,10 @@ Well-styled and consistent with the rest of the application.
 Forms are build with:
 react-hook-form - 
 zod - used for form schema validation;
+
+## DB
+Prisma is used as DB:
+npm install @prisma/client  
+npx prisma init
+npx prisma generate    
+npx prisma db push 
