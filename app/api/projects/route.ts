@@ -8,6 +8,7 @@ export async function POST(
   try {
     const { userId } = auth();
     const body = await req.json();
+    console.log(body)
 
     const { name } = body;
 
@@ -18,9 +19,9 @@ export async function POST(
     if (!name) {
       return new NextResponse("Name is required", { status: 400 })
     }
-
+ 
     const project = await prismadb.project.create({
-      date: {
+      data: {
         name,
         userId
       }
