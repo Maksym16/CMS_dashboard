@@ -58,5 +58,7 @@ zod - used for form schema validation;
 Prisma is used as DB:
 npm install @prisma/client  
 npx prisma init
-npx prisma generate    
+npx prisma generate - to generate new db  
 npx prisma db push 
+
+npx prisma migrate reset - to reset db

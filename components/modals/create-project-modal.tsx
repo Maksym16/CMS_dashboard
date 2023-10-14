@@ -39,7 +39,9 @@ export const CreateProjectModal = () => {
     try {
       setLoading(true);
       const res = await axios.post('/api/projects', values);
-      console.log(res.data)
+      // if project created succesfully redirect to dashboard
+      // its done in order to be sure new project was created in db
+      window.location.assign(`/${res.data.id}`);
     } catch(e) {
       toast.error('Something went wrong...')
     } finally {
