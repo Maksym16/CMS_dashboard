@@ -18,6 +18,11 @@ export function MainNav({
       active: pathname === `/${params.projectId}`
     },
     {
+      href: `/${params.projectId}/billboards`,
+      label: 'Billboards',
+      active: pathname === `/${params.projectId}/bilboards`
+    },
+    {
       href: `/${params.projectId}/settings`,
       label: 'Settings',
       active: pathname === `/${params.projectId}/settings`

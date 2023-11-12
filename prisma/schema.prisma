@@ -12,9 +12,22 @@ datasource db {
 }
 
 model Project {
-  id        String      @id @default(uuid())
+  id        String     @id @default(uuid())
   name      String
   userId    String
-  createdAt DateTime    @default(now())
-  updatedAt DateTime    @updatedAt
+  billboards Billboard[] @relation("ProjectToBillboard")
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+model Billboard {
+  id        String   @id @default(uuid())
+  projectId String
+  project   Project  @relation("ProjectToBillboard", fields: [projectId], references: [id])
+  label     String
+  imageUrl  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([projectId])
 }

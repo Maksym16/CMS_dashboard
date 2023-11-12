@@ -7,7 +7,7 @@ export  interface APiAlertProps {
 export const alertsData: Record<string, APiAlertProps> = {
   settingsForm: {
     title: 'NEXT_PUBLIC_API_URL',
-    description: 'TEST',
+    description: 'settings',
     variant: 'public'
   }
 }
