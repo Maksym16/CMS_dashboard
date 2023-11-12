@@ -67,6 +67,7 @@ const BillboardForm: React.FC<BillboardFormProps> = ({ initialData }) => {
         await axios.post(`/api/${params.projectId}/billboards`, data);
       }
       router.refresh();
+      router.push(`/${params.projectId}/billboards`)
       toast.success(toastMessage);
     } catch (e) {
       toast.error('Something went wrong!');
