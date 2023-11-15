@@ -9,6 +9,7 @@ import { useParams, useRouter } from 'next/navigation';
 import React from 'react';
 import { BillboardColumn, columns } from './columns';
 import { DataTable } from '@/components/ui/data-tabel';
+import { ApiList } from '@/components/ui/api-list';
 
 interface BillboardClientProps {
   data: BillboardColumn[]
@@ -37,6 +38,9 @@ const BillboardClient: React.FC<BillboardClientProps> = ({
       </div>
       <Separator />
       <DataTable data={data} columns={columns} searchKey="label"/>
+      <Separator />
+      <Heading title={'Billboards API'} description='Billboards list API'/>
+      <ApiList entityName='billboards' entityIDName='billboardId'/>
     </>
   );
 }
