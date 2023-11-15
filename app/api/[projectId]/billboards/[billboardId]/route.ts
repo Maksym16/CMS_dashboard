@@ -12,7 +12,7 @@ export async function GET (
       return new NextResponse("Billboard ID is required", { status: 400 })
     }
 
-    const billboard = await prismadb.project.findUnique({
+    const billboard = await prismadb.billboard.findUnique({
       where: {
         id: params.billboardId,
       }
@@ -108,15 +108,14 @@ export async function DELETE (
     }
  
  
-    const billboard = await prismadb.project.deleteMany({
+    const billboard = await prismadb.billboard.deleteMany({
       where: {
         id: params.billboardId,
       }
     });
-    
     return NextResponse.json(billboard);
   } catch(e) {
-    console.log('[projects_delete]', e)
+    console.log('[billboard_delete]', e)
     return new NextResponse("Interal error", { status: 500 })
   }
 }

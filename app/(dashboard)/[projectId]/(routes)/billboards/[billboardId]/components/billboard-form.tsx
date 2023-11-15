@@ -15,7 +15,6 @@ import Heading from '@/components/ui/heading';
 import ImageUpload from '@/components/ui/image-upload';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
-import { useOrigin } from '@/hooks/use-origin';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { Billboard } from '@prisma/client';
@@ -41,7 +40,6 @@ type BillboardFormValue = z.infer<typeof formSchema>;
 const BillboardForm: React.FC<BillboardFormProps> = ({ initialData }) => {
   const params = useParams();
   const router = useRouter();
-  const origin = useOrigin();
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -81,7 +79,7 @@ const BillboardForm: React.FC<BillboardFormProps> = ({ initialData }) => {
     try {
       await axios.delete(`/api/${params.projectId}/billboards/${params.billboardId}`);
       router.refresh();
-      router.push('/');
+      router.push(`/${params.projectId}/billboards`);
       toast.success('Billboard has been deleted!');
     } catch (e) {
       toast.error('Something went wrong!');

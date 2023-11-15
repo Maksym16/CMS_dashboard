@@ -3,15 +3,20 @@
 import { Button } from '@/components/ui/button';
 import Heading from '@/components/ui/heading';
 import { Separator } from '@/components/ui/separator';
+import { Billboard } from '@prisma/client';
 import { Plus } from 'lucide-react';
 import { useParams, useRouter } from 'next/navigation';
 import React from 'react';
+import { BillboardColumn, columns } from './columns';
+import { DataTable } from '@/components/ui/data-tabel';
 
 interface BillboardClientProps {
-
+  data: BillboardColumn[]
 }
 
-const BillboardClient: React.FC<BillboardClientProps> = (props) => {
+const BillboardClient: React.FC<BillboardClientProps> = ({
+  data
+}) => {
   const router = useRouter()
   const params = useParams()
 
@@ -22,7 +27,7 @@ const BillboardClient: React.FC<BillboardClientProps> = (props) => {
     <>
       <div className="flex items-center justify-between">
         <Heading
-          title="Billboards (0)"
+          title={`Billboards (${data.length})`}
           description='Manage billboards for your project'
         />
         <Button onClick={addNewHandler}>
@@ -31,6 +36,7 @@ const BillboardClient: React.FC<BillboardClientProps> = (props) => {
         </Button>
       </div>
       <Separator />
+      <DataTable data={data} columns={columns} searchKey="label"/>
     </>
   );
 }
