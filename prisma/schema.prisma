@@ -17,6 +17,7 @@ model Project {
   userId     String
   billboards Billboard[] @relation("ProjectToBillboard")
   categories Category[]  @relation("ProjectToCategory")
+  sizes      Size[]      @relation("ProjectToSize")
   createdAt  DateTime    @default(now())
   updatedAt  DateTime    @updatedAt
 }
@@ -40,10 +41,22 @@ model Category {
   project     Project   @relation("ProjectToCategory", fields: [projectId], references: [id])
   billboardId String
   billboard   Billboard @relation(fields: [billboardId], references: [id])
-  name    String
+  name        String
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 
   @@index([projectId])
   @@index([billboardId])
+}
+
+model Size {
+  id        String   @id @default(uuid())
+  projectId String
+  project   Project  @relation("ProjectToSize", fields: [projectId], references: [id])
+  name      String
+  value     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([projectId])
 }
