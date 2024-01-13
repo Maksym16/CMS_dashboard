@@ -18,6 +18,7 @@ model Project {
   billboards Billboard[] @relation("ProjectToBillboard")
   categories Category[]  @relation("ProjectToCategory")
   sizes      Size[]      @relation("ProjectToSize")
+  colorss      Color[]      @relation("ProjectToColor")
   createdAt  DateTime    @default(now())
   updatedAt  DateTime    @updatedAt
 }
@@ -53,6 +54,18 @@ model Size {
   id        String   @id @default(uuid())
   projectId String
   project   Project  @relation("ProjectToSize", fields: [projectId], references: [id])
+  name      String
+  value     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([projectId])
+}
+
+model Color {
+  id        String   @id @default(uuid())
+  projectId String
+  project   Project  @relation("ProjectToColor", fields: [projectId], references: [id])
   name      String
   value     String
   createdAt DateTime @default(now())

@@ -32,6 +32,11 @@ export function MainNav({
       label: 'Sizes',
       active: pathname === `/${params.projectId}/sizes`
     },
+    {
+      href: `/${params.projectId}/colors`,
+      label: 'Colors',
+      active: pathname === `/${params.projectId}/colors`
+    },
     { 
       href: `/${params.projectId}/settings`,
       label: 'Settings',
