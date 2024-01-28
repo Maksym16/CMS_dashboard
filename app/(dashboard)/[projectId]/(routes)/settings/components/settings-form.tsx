@@ -44,7 +44,6 @@ const SettingsForm: React.FC<SettingsFormProps> = ({ project }) => {
 
   const onSubmit = async (data: SettingsFormValue) => {
     setLoading(true)
-    console.log(data)
     try {
       await axios.patch(`/api/projects/${params.projectId}`, data)
       router.refresh()

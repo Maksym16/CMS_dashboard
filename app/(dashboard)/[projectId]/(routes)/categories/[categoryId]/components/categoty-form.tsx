@@ -65,7 +65,7 @@ const CategoryForm: React.FC<CategoryFormProps> = ({
       billboardId: '',
     },
   });
-  console.log(form)
+
   const onSubmit = async (data: CategoryFormValue) => {
     setLoading(true);
     try {
@@ -75,7 +75,6 @@ const CategoryForm: React.FC<CategoryFormProps> = ({
           data
         );
       } else {
-        console.log(data)
         await axios.post(`/api/${params.projectId}/categories`, data);
       }
       router.refresh();

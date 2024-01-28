@@ -131,6 +131,7 @@ const SizeForm: React.FC<ColorFormProps> = ({ initialData }) => {
                   <FormLabel>Name</FormLabel>
                   <FormControl>
                     <Input
+                    required
                       disabled={loading}
                       placeholder="Enter color name"
                       {...field}

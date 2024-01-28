@@ -14,7 +14,7 @@ interface ColorsClientProps {
   data: ColorColumn[]
 }
 
-const SizesClient: React.FC<ColorsClientProps> = ({
+const ColorsClient: React.FC<ColorsClientProps> = ({
   data
 }) => {
   const router = useRouter()
@@ -44,4 +44,4 @@ const SizesClient: React.FC<ColorsClientProps> = ({
   );
 }
 
-export default SizesClient;
+export default ColorsClient;
