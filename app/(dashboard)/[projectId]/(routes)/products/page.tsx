@@ -2,7 +2,7 @@ import prismadb from "@/lib/prismadb";
 import ProductClient from "./components/client";
 import { ProductColumn } from "./components/columns";
 import { format } from 'date-fns'
-import { formater } from "@/lib/utils";
+import { formatter } from "@/lib/utils";
 
 
 
@@ -31,7 +31,7 @@ const ProductsPage: React.FC<ProductsPageProps> = async ({ params }) => {
       name: product.name,
       isFeatured: product.isFeatured,
       isArchived: product.isArchived,
-      price: formater.format(product.price.toNumber()),
+      price: formatter.format(product.price.toNumber()),
       category: product.category.name,
       size: product.size.name,
       color: product.color.value,
