@@ -23,6 +23,7 @@ export async function GET(
         size: true,
       },
     });
+    console.log(product)
     return NextResponse.json(product);
   } catch (e) {
     console.log('[projects_get]', e);
@@ -106,7 +107,6 @@ export async function PATCH(
         isArchived,
       },
     });
-    console.log('images>>>>', images)
     const product = await prismadb.product.update({
       where: {
         id: params.productId,
@@ -121,7 +121,6 @@ export async function PATCH(
         },
       },
     });
-    console.log('images>>>>', product)
     return NextResponse.json(product);
   } catch (e) {
     console.log('[product_patch]', e);
