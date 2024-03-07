@@ -35,6 +35,7 @@ const ProductsPage: React.FC<ProductsPageProps> = async ({ params }) => {
       category: product.category.name,
       size: product.size.name,
       color: product.color.value,
+      description: product.description,
       createdAt: format(product.createdAt, "MMMM do, yyyy")
     }
   })

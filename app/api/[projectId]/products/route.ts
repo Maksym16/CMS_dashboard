@@ -18,6 +18,7 @@ export async function POST(
       colorId,
       sizeId,
       images,
+      description,
       isFeatured,
       isArchived,
     } = body;
@@ -68,6 +69,7 @@ export async function POST(
         categoryId,
         colorId,
         sizeId,
+        description,
         images: {
           createMany: {
             data: [

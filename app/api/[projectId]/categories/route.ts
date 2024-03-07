@@ -38,7 +38,6 @@ export async function POST (
     if (!projectByUser) {
       return new NextResponse("Unauthorized", { status: 403 })
     }
-    console.log(billboardId)
     const category = await prismadb.category.create({
       data: {
         name,

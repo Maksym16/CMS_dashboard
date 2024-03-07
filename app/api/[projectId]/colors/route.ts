@@ -68,7 +68,6 @@ export async function GET(
         projectId: params.projectId
       }
     });
-    console.log(colors)
     return NextResponse.json(colors);
   } catch(e) {
     console.log('[color_get]', e)

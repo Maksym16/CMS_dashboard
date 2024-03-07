@@ -23,6 +23,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Separator } from '@/components/ui/separator';
+import { Textarea } from '@/components/ui/textarea';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { Product, Image, Category, Size, Color } from '@prisma/client';
@@ -40,6 +41,7 @@ const formSchema = z.object({
   price: z.coerce.number().min(1),
   categoryId: z.string().min(1),
   colorId: z.string().min(1),
+  description: z.string().min(1),
   sizeId: z.string().min(1),
   isFeatured: z.boolean().default(false).optional(),
   isArchived: z.boolean().default(false).optional(),
@@ -87,6 +89,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
           categoryId: '',
           colorId: '',
           sizeId: '',
+          description: '',
           isFeatured: false,
           isArchived: false,
         },
@@ -377,6 +380,24 @@ const ProductForm: React.FC<ProductFormProps> = ({
               )}
             />
           </div>
+          <FormField
+              control={form.control}
+              name="description"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Description</FormLabel>
+                  <FormControl>
+                    <Textarea
+                      disabled={loading}
+                      placeholder="Enter product description"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormDescription />
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
           <Button disabled={loading} className="ml-auto" type="submit">
             {action}
           </Button>

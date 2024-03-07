@@ -23,7 +23,6 @@ export async function GET(
         size: true,
       },
     });
-    console.log(product)
     return NextResponse.json(product);
   } catch (e) {
     console.log('[projects_get]', e);
