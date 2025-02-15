@@ -28,7 +28,7 @@ export async function POST(
     
     return NextResponse.json(project);
   } catch (error) {
-    console.log('[projects_post]', error)
+    // console.log('[projects_post]', error)
     return new NextResponse("Interal error", { status: 500 })
   }
 }

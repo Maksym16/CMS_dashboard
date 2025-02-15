@@ -37,7 +37,7 @@ export async function PATCH (
     
     return NextResponse.json(project);
   } catch(e) {
-    console.log('[projects_patch]', e)
+    // console.log('[projects_patch]', e)
     return new NextResponse("Interal error", { status: 500 })
   }
 }
@@ -67,7 +67,7 @@ export async function DELETE (
     
     return NextResponse.json(project);
   } catch(e) {
-    console.log('[projects_delete]', e)
+    // console.log('[projects_delete]', e)
     return new NextResponse("Interal error", { status: 500 })
   }
 }

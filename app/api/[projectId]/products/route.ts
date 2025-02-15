@@ -84,7 +84,7 @@ export async function POST(
     });
     return NextResponse.json(product);
   } catch (e) {
-    console.log('[bproducts_post]', e);
+    // console.log('[bproducts_post]', e);
     return new NextResponse('Interal error', { status: 500 });
   }
 }
@@ -127,7 +127,7 @@ export async function GET(
 
     return NextResponse.json(products);
   } catch (e) {
-    console.log('[product_get]', e);
+    // console.log('[product_get]', e);
     return new NextResponse('Interal error', { status: 500 });
   }
 }

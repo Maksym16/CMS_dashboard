@@ -20,7 +20,7 @@ export async function GET (
     
     return NextResponse.json(color);
   } catch(e) {
-    console.log('[color_get]', e)
+    // console.log('[color_get]', e)
     return new NextResponse("Interal error", { status: 500 })
   }
 }
@@ -75,7 +75,7 @@ export async function PATCH (
     
     return NextResponse.json(color);
   } catch(e) {
-    console.log('[color_patch]', e)
+    // console.log('[color_patch]', e)
     return new NextResponse("Interal error", { status: 500 })
   }
 }
@@ -115,7 +115,7 @@ export async function DELETE (
     });
     return NextResponse.json(color);
   } catch(e) {
-    console.log('[color_delete]', e)
+    // console.log('[color_delete]', e)
     return new NextResponse("Interal error", { status: 500 })
   }
 }

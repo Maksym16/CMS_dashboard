@@ -20,7 +20,7 @@ export async function GET (
     
     return NextResponse.json(billboard);
   } catch(e) {
-    console.log('[projects_delete]', e)
+    // console.log('[projects_delete]', e)
     return new NextResponse("Interal error", { status: 500 })
   }
 }
@@ -75,7 +75,7 @@ export async function PATCH (
     
     return NextResponse.json(billboard);
   } catch(e) {
-    console.log('[billboard_patch]', e)
+    // console.log('[billboard_patch]', e)
     return new NextResponse("Interal error", { status: 500 })
   }
 }

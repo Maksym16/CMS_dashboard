@@ -23,7 +23,7 @@ export async function GET (
     
     return NextResponse.json(category);
   } catch(e) {
-    console.log('[category_deleted]', e)
+    // console.log('[category_deleted]', e)
     return new NextResponse("Interal error", { status: 500 })
   }
 }
@@ -78,7 +78,7 @@ export async function PATCH (
     
     return NextResponse.json(category);
   } catch(e) {
-    console.log('[category_patch]', e)
+    // console.log('[category_patch]', e)
     return new NextResponse("Interal error", { status: 500 })
   }
 }
@@ -118,7 +118,7 @@ export async function DELETE (
     });
     return NextResponse.json(category);
   } catch(e) {
-    console.log('[category_delete]', e)
+    // console.log('[category_delete]', e)
     return new NextResponse("Interal error", { status: 500 })
   }
 }

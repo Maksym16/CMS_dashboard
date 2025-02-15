@@ -25,7 +25,7 @@ export async function GET(
     });
     return NextResponse.json(product);
   } catch (e) {
-    console.log('[projects_get]', e);
+    // console.log('[projects_get]', e);
     return new NextResponse('Interal error', { status: 500 });
   }
 }
@@ -122,7 +122,7 @@ export async function PATCH(
     });
     return NextResponse.json(product);
   } catch (e) {
-    console.log('[product_patch]', e);
+    // console.log('[product_patch]', e);
     return new NextResponse('Interal error', { status: 500 });
   }
 }
@@ -161,7 +161,7 @@ export async function DELETE(
     });
     return NextResponse.json(product);
   } catch (e) {
-    console.log('[product_delete]', e);
+    // console.log('[product_delete]', e);
     return new NextResponse('Interal error', { status: 500 });
   }
 }

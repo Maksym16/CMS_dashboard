@@ -47,7 +47,7 @@ export async function POST (
     });
     return NextResponse.json(billboard);
   } catch(e) {
-    console.log('[billboard_post]', e)
+    // console.log('[billboard_post]', e)
     return new NextResponse("Interal error", { status: 500 })
   }
 }
@@ -70,7 +70,7 @@ export async function GET(
     
     return NextResponse.json(billboards);
   } catch(e) {
-    console.log('[billboard_get]', e)
+    // console.log('[billboard_get]', e)
     return new NextResponse("Interal error", { status: 500 })
   }
 }

@@ -20,7 +20,7 @@ export async function GET (
     
     return NextResponse.json(size);
   } catch(e) {
-    console.log('[size_get]', e)
+    // console.log('[size_get]', e)
     return new NextResponse("Interal error", { status: 500 })
   }
 }
@@ -75,7 +75,7 @@ export async function PATCH (
     
     return NextResponse.json(size);
   } catch(e) {
-    console.log('[size_patch]', e)
+    // console.log('[size_patch]', e)
     return new NextResponse("Interal error", { status: 500 })
   }
 }
@@ -115,7 +115,7 @@ export async function DELETE (
     });
     return NextResponse.json(size);
   } catch(e) {
-    console.log('[size_delete]', e)
+    // console.log('[size_delete]', e)
     return new NextResponse("Interal error", { status: 500 })
   }
 }
