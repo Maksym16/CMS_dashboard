@@ -17,6 +17,7 @@ export async function POST(
       categoryId,
       colorId,
       sizeId,
+      roastTypeId,
       images,
       description,
       isFeatured,
@@ -47,6 +48,9 @@ export async function POST(
     if (!colorId) {
       return new NextResponse('Color is required', { status: 400 });
     }
+    if (!roastTypeId) {
+      return new NextResponse('Roast Type is required', { status: 400 });
+    }
 
     if (!params.projectId) {
       return new NextResponse('Project ID is required', { status: 400 });
@@ -69,6 +73,7 @@ export async function POST(
         categoryId,
         colorId,
         sizeId,
+        roastTypeId,
         description,
         images: {
           createMany: {
@@ -99,6 +104,7 @@ export async function GET(
     const categoryId = searchParams.get("categoryId") || undefined;
     const colorId = searchParams.get("colorId") || undefined;
     const sizeId = searchParams.get("sizeId") || undefined;
+    const roastTypeId = searchParams.get("roastTypeId") || undefined;
     const isFeatured = searchParams.get("isFeatured");
 
     if (!params.projectId) {
@@ -111,6 +117,7 @@ export async function GET(
         categoryId,
         colorId,
         sizeId,
+        roastTypeId,
         isFeatured: isFeatured ? true : undefined,
         isArchived: false
       },
@@ -118,6 +125,7 @@ export async function GET(
         images: true,
         category: true,
         color: true,
+        roastType: true,
         size: true
       },
       orderBy: {
