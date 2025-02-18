@@ -18,6 +18,7 @@ model Project {
   categories Category[]  @relation("ProjectToCategory")
   sizes      Size[]      @relation("ProjectToSize")
   colors     Color[]     @relation("ProjectToColor")
+  roastTypes RoastType[] @relation("ProjectToRoastType")
   products   Product[]   @relation("ProjectToProduct")
   orders     Order[]     @relation("ProjectToOrder")
   createdAt  DateTime    @default(now())
@@ -78,6 +79,19 @@ model Color {
   @@index([projectId])
 }
 
+model RoastType {
+  id        String    @id @default(uuid())
+  projectId String
+  project   Project   @relation("ProjectToRoastType", fields: [projectId], references: [id])
+  name      String
+  value     String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  product   Product[]
+
+  @@index([projectId])
+}
+
 model Product {
   id          String      @id @default(uuid())
   projectId   String
@@ -92,6 +106,8 @@ model Product {
   size        Size        @relation(fields: [sizeId], references: [id])
   colorId     String
   color       Color       @relation(fields: [colorId], references: [id])
+  roastTypeId String
+  roastType   RoastType   @relation(fields: [roastTypeId], references: [id])
   images      Image[]
   description String
   orderItems  OrderItem[]
@@ -102,6 +118,7 @@ model Product {
   @@index([categoryId])
   @@index([sizeId])
   @@index([colorId])
+  @@index([roastTypeId])
 }
 
 model Image {

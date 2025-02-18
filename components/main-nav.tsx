@@ -38,6 +38,11 @@ export function MainNav({
       active: pathname === `/${params.projectId}/colors`
     },
     {
+      href: `/${params.projectId}/roast-types`,
+      label: 'Roast Types',
+      active: pathname === `/${params.projectId}/roast-types`
+    },
+    {
       href: `/${params.projectId}/products`,
       label: 'Products',
       active: pathname === `/${params.projectId}/products`
