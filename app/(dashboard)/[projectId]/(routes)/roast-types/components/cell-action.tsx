@@ -10,7 +10,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { ColorColumn } from './columns';
+import { RoastTypeColumn } from './columns';
 import { Button } from '@/components/ui/button';
 import { Copy, Edit, MoreHorizontal, Trash } from 'lucide-react';
 import toast from 'react-hot-toast';
@@ -19,7 +19,7 @@ import axios from 'axios';
 import AlertModal from '@/components/modals/alert-modal';
 
 interface CellActionProps {
-  data: ColorColumn;
+  data: RoastTypeColumn;
 }
 
 export const CellAction: React.FC<CellActionProps> = ({ data }) => {
