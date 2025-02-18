@@ -34,6 +34,12 @@ const ProductPage = async ({
     },
   });
 
+  const roastTypes = await prismadb.roastType.findMany({
+    where: {
+      projectId: params.projectId,
+    },
+  });
+
   return (
     <div className="flex-col">
       <div className="flex-1 space-y-4 p-8 pt-6">
@@ -41,6 +47,7 @@ const ProductPage = async ({
           categories={categories}
           sizes={sizes}
           colors={colors}
+          roastTypes={roastTypes}
           initialData={product}
         />
       </div>

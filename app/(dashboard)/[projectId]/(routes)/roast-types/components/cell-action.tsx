@@ -30,21 +30,21 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
 
   const onCopy = (id: string) => {
     navigator.clipboard.writeText(id);
-    toast.success('Color ID copied to the clipboard!');
+    toast.success('Roast Type ID copied to the clipboard!');
   };
 
   const onEdit = () => {
-    return router.push(`/${params.projectId}/colors/${data.id}`);
+    return router.push(`/${params.projectId}/roast-types/${data.id}`);
   };
 
   const onDelete = async () => {
     setLoading(true);
     try {
       await axios.delete(
-        `/api/${params.projectId}/colors/${data.id}`
+        `/api/${params.projectId}/roastTypes/${data.id}`
       );
       router.refresh();
-      toast.success('Colors has been deleted!');
+      toast.success('Roast Type has been deleted!');
     } catch (e) {
       toast.error('Something went wrong!');
     } finally {

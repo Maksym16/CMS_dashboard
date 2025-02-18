@@ -19,6 +19,7 @@ const ProductsPage: React.FC<ProductsPageProps> = async ({ params }) => {
       category: true,
       size: true,
       color: true,
+      roastType: true,
     },
     orderBy: {
       createdAt: 'desc'
@@ -35,6 +36,7 @@ const ProductsPage: React.FC<ProductsPageProps> = async ({ params }) => {
       category: product.category.name,
       size: product.size.name,
       color: product.color.value,
+      roastType: product.roastType.value,
       description: product.description,
       createdAt: format(product.createdAt, "MMMM do, yyyy")
     }

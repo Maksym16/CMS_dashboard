@@ -20,6 +20,7 @@ export async function GET(
         images: true,
         category: true,
         color: true,
+        roastType: true,
         size: true,
       },
     });
@@ -43,6 +44,7 @@ export async function PATCH(
       price,
       categoryId,
       colorId,
+      roastTypeId,
       sizeId,
       images,
       isFeatured,
@@ -73,6 +75,9 @@ export async function PATCH(
     if (!colorId) {
       return new NextResponse('Color is required', { status: 400 });
     }
+    if (!roastTypeId) {
+      return new NextResponse('Roast Type is required', { status: 400 });
+    }
 
     if (!params.productId) {
       return new NextResponse('product ID is required', { status: 400 });
@@ -98,6 +103,7 @@ export async function PATCH(
         price,
         categoryId,
         colorId,
+        roastTypeId,
         sizeId,
         images: {
           deleteMany: {}

@@ -26,7 +26,7 @@ import { Separator } from '@/components/ui/separator';
 import { Textarea } from '@/components/ui/textarea';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { Product, Image, Category, Size, Color } from '@prisma/client';
+import { Product, Image, Category, Size, Color, RoastType } from '@prisma/client';
 import axios from 'axios';
 import { Trash } from 'lucide-react';
 import { useParams, useRouter } from 'next/navigation';
@@ -41,6 +41,7 @@ const formSchema = z.object({
   price: z.coerce.number().min(1),
   categoryId: z.string().min(1),
   colorId: z.string().min(1),
+  roastTypeId: z.string().min(1),
   description: z.string().min(1),
   sizeId: z.string().min(1),
   isFeatured: z.boolean().default(false).optional(),
@@ -51,6 +52,7 @@ export interface ProductFormProps {
   categories: Category[];
   sizes: Size[];
   colors: Color[];
+  roastTypes: RoastType[];
   initialData:
     | (Product & {
         images: Image[];
@@ -65,6 +67,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
   categories,
   sizes,
   colors,
+  roastTypes
 }) => {
   const params = useParams();
   const router = useRouter();
@@ -89,6 +92,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
           categoryId: '',
           colorId: '',
           sizeId: '',
+          roastTypeId: '',
           description: '',
           isFeatured: false,
           isArchived: false,
@@ -324,6 +328,43 @@ const ProductForm: React.FC<ProductFormProps> = ({
                           return (
                             <SelectItem key={color.id} value={color.id}>
                               {color.name}
+                            </SelectItem>
+                          );
+                        })}
+                      </SelectContent>
+                    </Select>
+                  </FormControl>
+                  <FormDescription />
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="roastTypeId"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Roast Type</FormLabel>
+                  <FormControl>
+                    <Select
+                      disabled={loading}
+                      onValueChange={field.onChange}
+                      value={field.value}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger className="w-[180px]">
+                          <SelectValue
+                            placeholder="Select a roast type"
+                            defaultValue={field.value}
+                          />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {roastTypes.map((roastType) => {
+                          return (
+                            <SelectItem key={roastType.id} value={roastType.id}>
+                              {roastType.name}
                             </SelectItem>
                           );
                         })}
