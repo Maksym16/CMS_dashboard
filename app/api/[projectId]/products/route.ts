@@ -15,7 +15,7 @@ export async function POST(
       name,
       price,
       categoryId,
-      colorId,
+      coffeeTypeId,
       sizeId,
       roastTypeId,
       images,
@@ -45,8 +45,8 @@ export async function POST(
     if (!sizeId) {
       return new NextResponse('SizeId is required', { status: 400 });
     }
-    if (!colorId) {
-      return new NextResponse('Color is required', { status: 400 });
+    if (!coffeeTypeId) {
+      return new NextResponse('CoffeeTypeId is required', { status: 400 });
     }
     if (!roastTypeId) {
       return new NextResponse('Roast Type is required', { status: 400 });
@@ -71,7 +71,7 @@ export async function POST(
         name,
         price,
         categoryId,
-        colorId,
+        coffeeTypeId,
         sizeId,
         roastTypeId,
         description,
@@ -102,7 +102,7 @@ export async function GET(
   try {
     const { searchParams } = new URL(req.url);
     const categoryId = searchParams.get("categoryId") || undefined;
-    const colorId = searchParams.get("colorId") || undefined;
+    const coffeeTypeId = searchParams.get("coffeeTypeId") || undefined;
     const sizeId = searchParams.get("sizeId") || undefined;
     const roastTypeId = searchParams.get("roastTypeId") || undefined;
     const isFeatured = searchParams.get("isFeatured");
@@ -115,7 +115,7 @@ export async function GET(
       where: {
         projectId: params.projectId,
         categoryId,
-        colorId,
+        coffeeTypeId,
         sizeId,
         roastTypeId,
         isFeatured: isFeatured ? true : undefined,
@@ -124,7 +124,7 @@ export async function GET(
       include: {
         images: true,
         category: true,
-        color: true,
+        coffeeType: true,
         roastType: true,
         size: true
       },

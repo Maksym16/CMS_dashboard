@@ -2,33 +2,32 @@ import prismadb from "@/lib/prismadb";
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 
-//get color
+//get coffeeType
 export async function GET (
   req: Request,
-  { params }: {params: { colorId: string}}
+  { params }: {params: { coffeeTypeId: string}}
 ) {
   try {
-    if (!params.colorId) {
-      return new NextResponse("Color ID is required", { status: 400 })
+    if (!params.coffeeTypeId) {
+      return new NextResponse("Coffee Type ID is required", { status: 400 })
     }
 
-    const color = await prismadb.color.findUnique({
+    const coffeeType = await prismadb.coffeeType.findUnique({
       where: {
-        id: params.colorId,
+        id: params.coffeeTypeId,
       }
     });
     
-    return NextResponse.json(color);
+    return NextResponse.json(coffeeType);
   } catch(e) {
-    // console.log('[color_get]', e)
     return new NextResponse("Interal error", { status: 500 })
   }
 }
 
-//update color
+//update Coffee Type
 export async function PATCH (
   req: Request,
-  {params}: {params: {projectId: string, colorId: string}}
+  {params}: {params: {projectId: string, coffeeTypeId: string}}
 ) {
   try {
     const { userId } = auth();
@@ -48,8 +47,8 @@ export async function PATCH (
       return new NextResponse("Value is required", { status: 400 })
     }
 
-    if (!params.colorId) {
-      return new NextResponse("Color ID is required", { status: 400 })
+    if (!params.coffeeTypeId) {
+      return new NextResponse("Coffee Type ID is required", { status: 400 })
     }
 
     const projectByUser = await prismadb.project.findFirst({
@@ -63,9 +62,9 @@ export async function PATCH (
       return new NextResponse("Unauthorized", { status: 403 })
     }
  
-    const color = await prismadb.color.updateMany({
+    const coffeeType = await prismadb.coffeeType.updateMany({
       where: {
-        id: params.colorId,
+        id: params.coffeeTypeId,
       },
       data: {
         name,
@@ -73,17 +72,16 @@ export async function PATCH (
       }
     });
     
-    return NextResponse.json(color);
+    return NextResponse.json(coffeeType);
   } catch(e) {
-    // console.log('[color_patch]', e)
     return new NextResponse("Interal error", { status: 500 })
   }
 }
 
-//delete color
+//delete coffeeType
 export async function DELETE (
   req: Request,
-  { params }: {params: { projectId: string, colorId: string}}
+  { params }: {params: { projectId: string, coffeeTypeId: string}}
 ) {
   try {
     const { userId } = auth();
@@ -92,8 +90,8 @@ export async function DELETE (
       return new NextResponse("Unauthorized", { status: 401 })
     }
 
-    if (!params.colorId) {
-      return new NextResponse("Color ID is required", { status: 400 })
+    if (!params.coffeeTypeId) {
+      return new NextResponse("Coffee Type ID is required", { status: 400 })
     }
 
     const projectByUser = await prismadb.project.findFirst({
@@ -108,14 +106,13 @@ export async function DELETE (
     }
  
  
-    const color = await prismadb.color.deleteMany({
+    const coffeeType = await prismadb.coffeeType.deleteMany({
       where: {
-        id: params.colorId,
+        id: params.coffeeTypeId,
       }
     });
-    return NextResponse.json(color);
+    return NextResponse.json(coffeeType);
   } catch(e) {
-    // console.log('[color_delete]', e)
     return new NextResponse("Interal error", { status: 500 })
   }
 }

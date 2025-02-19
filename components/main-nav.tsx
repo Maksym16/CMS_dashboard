@@ -33,9 +33,9 @@ export function MainNav({
       active: pathname === `/${params.projectId}/sizes`
     },
     {
-      href: `/${params.projectId}/colors`,
-      label: 'Colors',
-      active: pathname === `/${params.projectId}/colors`
+      href: `/${params.projectId}/coffee-types`,
+      label: 'Coffee Types',
+      active: pathname === `/${params.projectId}/coffee-types`
     },
     {
       href: `/${params.projectId}/roast-types`,

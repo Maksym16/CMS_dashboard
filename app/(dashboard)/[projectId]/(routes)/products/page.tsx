@@ -18,7 +18,7 @@ const ProductsPage: React.FC<ProductsPageProps> = async ({ params }) => {
     include: {
       category: true,
       size: true,
-      color: true,
+      coffeeType: true,
       roastType: true,
     },
     orderBy: {
@@ -35,7 +35,7 @@ const ProductsPage: React.FC<ProductsPageProps> = async ({ params }) => {
       price: formatter.format(product.price.toNumber()),
       category: product.category.name,
       size: product.size.name,
-      color: product.color.value,
+      coffeeType: product.coffeeType.value,
       roastType: product.roastType.value,
       description: product.description,
       createdAt: format(product.createdAt, "MMMM do, yyyy")

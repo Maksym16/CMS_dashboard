@@ -17,7 +17,7 @@ model Project {
   billboards Billboard[] @relation("ProjectToBillboard")
   categories Category[]  @relation("ProjectToCategory")
   sizes      Size[]      @relation("ProjectToSize")
-  colors     Color[]     @relation("ProjectToColor")
+  coffeeTypes     CoffeeType[]     @relation("ProjectToCoffeeType")
   roastTypes RoastType[] @relation("ProjectToRoastType")
   products   Product[]   @relation("ProjectToProduct")
   orders     Order[]     @relation("ProjectToOrder")
@@ -66,10 +66,10 @@ model Size {
   @@index([projectId])
 }
 
-model Color {
+model CoffeeType {
   id        String    @id @default(uuid())
   projectId String
-  project   Project   @relation("ProjectToColor", fields: [projectId], references: [id])
+  project   Project   @relation("ProjectToCoffeeType", fields: [projectId], references: [id])
   name      String
   value     String
   createdAt DateTime  @default(now())
@@ -104,8 +104,8 @@ model Product {
   isArchived  Boolean     @default(false)
   sizeId      String
   size        Size        @relation(fields: [sizeId], references: [id])
-  colorId     String
-  color       Color       @relation(fields: [colorId], references: [id])
+  coffeeTypeId     String
+  coffeeType       CoffeeType       @relation(fields: [coffeeTypeId], references: [id])
   roastTypeId String
   roastType   RoastType   @relation(fields: [roastTypeId], references: [id])
   images      Image[]
@@ -117,7 +117,7 @@ model Product {
   @@index([projectId])
   @@index([categoryId])
   @@index([sizeId])
-  @@index([colorId])
+  @@index([coffeeTypeId])
   @@index([roastTypeId])
 }
 

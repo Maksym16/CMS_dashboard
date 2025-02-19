@@ -1,14 +1,14 @@
 import prismadb from "@/lib/prismadb";
-import ColorsClient from "./components/client";
-import { ColorColumn } from "./components/columns";
+import CoffeeTypeClient from "./components/client";
+import { CoffeeTypeColumn } from "./components/columns";
 import { format } from 'date-fns'
 
-interface ColorPageProps {
+interface CoffeeTypePageProps {
   params: { projectId: string }
 }
-const ColorsPage: React.FC<ColorPageProps> = async ({ params }) => {
+const CoffeeTypesPage: React.FC<CoffeeTypePageProps> = async ({ params }) => {
 
-  const colors = await prismadb.color.findMany({
+  const coffeeTypes = await prismadb.coffeeType.findMany({
     where: {
       projectId: params.projectId
     },
@@ -17,7 +17,7 @@ const ColorsPage: React.FC<ColorPageProps> = async ({ params }) => {
     }
   })
 
-  const formattedColors: ColorColumn[] = colors.map((c) => {
+  const formattedCoffeeTypes: CoffeeTypeColumn[] = coffeeTypes.map((c) => {
     return {
       id: c.id,
       name: c.name,
@@ -29,10 +29,10 @@ const ColorsPage: React.FC<ColorPageProps> = async ({ params }) => {
   return  (
     <div className="flex-col">
       <div className="flex-1 space-y-4 p-8 pt-6">
-        <ColorsClient data={formattedColors}/>
+        <CoffeeTypeClient data={formattedCoffeeTypes}/>
       </div>
     </div>
   )
 }
 
-export default ColorsPage;
+export default CoffeeTypesPage;

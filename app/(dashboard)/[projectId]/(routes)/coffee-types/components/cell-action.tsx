@@ -10,7 +10,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { ColorColumn } from './columns';
+import { CoffeeTypeColumn } from './columns';
 import { Button } from '@/components/ui/button';
 import { Copy, Edit, MoreHorizontal, Trash } from 'lucide-react';
 import toast from 'react-hot-toast';
@@ -19,7 +19,7 @@ import axios from 'axios';
 import AlertModal from '@/components/modals/alert-modal';
 
 interface CellActionProps {
-  data: ColorColumn;
+  data: CoffeeTypeColumn;
 }
 
 export const CellAction: React.FC<CellActionProps> = ({ data }) => {
@@ -30,21 +30,21 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
 
   const onCopy = (id: string) => {
     navigator.clipboard.writeText(id);
-    toast.success('Color ID copied to the clipboard!');
+    toast.success('Coffee Type ID copied to the clipboard!');
   };
 
   const onEdit = () => {
-    return router.push(`/${params.projectId}/colors/${data.id}`);
+    return router.push(`/${params.projectId}/coffee-types/${data.id}`);
   };
 
   const onDelete = async () => {
     setLoading(true);
     try {
       await axios.delete(
-        `/api/${params.projectId}/colors/${data.id}`
+        `/api/${params.projectId}/coffeeTypes/${data.id}`
       );
       router.refresh();
-      toast.success('Colors has been deleted!');
+      toast.success('Coffee Types has been deleted!');
     } catch (e) {
       toast.error('Something went wrong!');
     } finally {

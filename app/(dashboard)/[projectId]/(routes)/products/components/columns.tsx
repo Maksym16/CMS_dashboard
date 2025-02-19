@@ -9,7 +9,7 @@ export type ProductColumn = {
   price: string,
   size: string,
   category: string,
-  color: string,
+  coffeeType: string,
   roastType: string,
   description: string,
   isFeatured: boolean;
@@ -49,23 +49,15 @@ export const columns: ColumnDef<ProductColumn>[] = [
   {
     accessorKey: "color",
     header: "Color",
-    cell: ({ row }) => (
-      <div className="flex items-center gap-x-2">
-        {row.original.color}
-        <div className="h-6 w-6 rounded-full border"
-          style={{ backgroundColor: row.original.color}}
-        />
-      </div>
-    )
   },
   {
     accessorKey: "roastType",
     header: "Roast Type",
     cell: ({ row }) => (
       <div className="flex items-center gap-x-2">
-        {row.original.color}
+        {row.original.roastType}
         <div className="h-6 w-6 rounded-full border"
-          style={{ backgroundColor: row.original.color}}
+          style={{ backgroundColor: row.original.roastType}}
         />
       </div>
     )

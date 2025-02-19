@@ -28,7 +28,7 @@ const ProductPage = async ({
     },
   });
 
-  const colors = await prismadb.color.findMany({
+  const coffeeTypes = await prismadb.coffeeType.findMany({
     where: {
       projectId: params.projectId,
     },
@@ -46,7 +46,7 @@ const ProductPage = async ({
         <ProductForm
           categories={categories}
           sizes={sizes}
-          colors={colors}
+          coffeeTypes={coffeeTypes}
           roastTypes={roastTypes}
           initialData={product}
         />

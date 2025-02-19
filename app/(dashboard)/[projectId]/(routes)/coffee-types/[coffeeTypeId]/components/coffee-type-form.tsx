@@ -17,7 +17,7 @@ import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { Color } from '@prisma/client';
+import { CoffeeType } from '@prisma/client';
 import axios from 'axios';
 import { Trash } from 'lucide-react';
 import { useParams, useRouter } from 'next/navigation';
@@ -28,29 +28,27 @@ import { z } from 'zod';
 
 const formSchema = z.object({
   name: z.string().min(1),
-  value: z.string().min(4).regex(/^/, {
-    message: 'String must be a valid hex code',
-  }),
+  value: z.string().min(4)
 });
 
-export interface ColorFormProps {
-  initialData: Color | null;
+export interface CoffeeTypeFormProps {
+  initialData: CoffeeType | null;
 }
 
-type ColorFormValue = z.infer<typeof formSchema>;
+type CoffeeTypeFormValue = z.infer<typeof formSchema>;
 
-const SizeForm: React.FC<ColorFormProps> = ({ initialData }) => {
+const CoffeeTypeForm: React.FC<CoffeeTypeFormProps> = ({ initialData }) => {
   const params = useParams();
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const title = initialData ? 'Edit color' : 'Create color';
-  const description = initialData ? 'Edit a color' : 'Add a new color';
-  const toastMessage = initialData ? 'Color updated' : 'Color created';
+  const title = initialData ? 'Edit coffee type' : 'Create coffee type';
+  const description = initialData ? 'Edit a coffee type' : 'Add a new coffee type';
+  const toastMessage = initialData ? 'Coffee type updated' : 'Coffee type created';
   const action = initialData ? 'Save changes' : 'Create';
 
-  const form = useForm<ColorFormValue>({
+  const form = useForm<CoffeeTypeFormValue>({
     resolver: zodResolver(formSchema),
     defaultValues: initialData || {
       name: '',
@@ -58,19 +56,19 @@ const SizeForm: React.FC<ColorFormProps> = ({ initialData }) => {
     },
   });
 
-  const onSubmit = async (data: ColorFormValue) => {
+  const onSubmit = async (data: CoffeeTypeFormValue) => {
     setLoading(true);
     try {
       if (initialData) {
         await axios.patch(
-          `/api/${params.projectId}/colors/${params.colorId}`,
+          `/api/${params.projectId}/coffeeTypes/${params.coffeeTypeId}`,
           data
         );
       } else {
-        await axios.post(`/api/${params.projectId}/colors`, data);
+        await axios.post(`/api/${params.projectId}/coffeeTypes`, data);
       }
       router.refresh();
-      router.push(`/${params.projectId}/colors`);
+      router.push(`/${params.projectId}/coffee-types`);
       toast.success(toastMessage);
     } catch (e) {
       toast.error('Something went wrong!');
@@ -82,10 +80,10 @@ const SizeForm: React.FC<ColorFormProps> = ({ initialData }) => {
   const onDelete = async () => {
     setLoading(true);
     try {
-      await axios.delete(`/api/${params.projectId}/colors/${params.colorId}`);
+      await axios.delete(`/api/${params.projectId}/coffeeTypes/${params.coffeeTypeId}`);
       router.refresh();
-      router.push(`/${params.projectId}/colors`);
-      toast.success('Color has been deleted!');
+      router.push(`/${params.projectId}/coffee-types`);
+      toast.success('Coffee Type has been deleted!');
     } catch (e) {
       toast.error('Something went wrong!');
     } finally {
@@ -133,7 +131,7 @@ const SizeForm: React.FC<ColorFormProps> = ({ initialData }) => {
                     <Input
                     required
                       disabled={loading}
-                      placeholder="Enter color name"
+                      placeholder="Enter coffee type name"
                       {...field}
                     />
                   </FormControl>
@@ -152,12 +150,8 @@ const SizeForm: React.FC<ColorFormProps> = ({ initialData }) => {
                     <div className="flex items-center gap-x-4">
                       <Input
                         disabled={loading}
-                        placeholder="Enter color value"
+                        placeholder="Enter coffee type value"
                         {...field}
-                      />
-                      <div
-                        className="border p-4 rounded-full"
-                        style={{ backgroundColor: field.value }}
                       />
                     </div>
                   </FormControl>
@@ -177,4 +171,4 @@ const SizeForm: React.FC<ColorFormProps> = ({ initialData }) => {
   );
 };
 
-export default SizeForm;
+export default CoffeeTypeForm;

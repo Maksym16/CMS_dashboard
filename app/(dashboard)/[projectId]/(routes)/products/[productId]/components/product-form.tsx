@@ -26,7 +26,7 @@ import { Separator } from '@/components/ui/separator';
 import { Textarea } from '@/components/ui/textarea';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { Product, Image, Category, Size, Color, RoastType } from '@prisma/client';
+import { Product, Image, Category, Size, CoffeeType, RoastType } from '@prisma/client';
 import axios from 'axios';
 import { Trash } from 'lucide-react';
 import { useParams, useRouter } from 'next/navigation';
@@ -40,7 +40,7 @@ const formSchema = z.object({
   images: z.object({ url: z.string() }).array(),
   price: z.coerce.number().min(1),
   categoryId: z.string().min(1),
-  colorId: z.string().min(1),
+  coffeeTypeId: z.string().min(1),
   roastTypeId: z.string().min(1),
   description: z.string().min(1),
   sizeId: z.string().min(1),
@@ -51,7 +51,7 @@ const formSchema = z.object({
 export interface ProductFormProps {
   categories: Category[];
   sizes: Size[];
-  colors: Color[];
+  coffeeTypes: CoffeeType[];
   roastTypes: RoastType[];
   initialData:
     | (Product & {
@@ -66,7 +66,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
   initialData,
   categories,
   sizes,
-  colors,
+  coffeeTypes,
   roastTypes
 }) => {
   const params = useParams();
@@ -90,7 +90,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
           images: [],
           price: 0,
           categoryId: '',
-          colorId: '',
+          coffeeTypeId: '',
           sizeId: '',
           roastTypeId: '',
           description: '',
@@ -304,10 +304,10 @@ const ProductForm: React.FC<ProductFormProps> = ({
             />
             <FormField
               control={form.control}
-              name="colorId"
+              name="coffeeTypeId"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Color</FormLabel>
+                  <FormLabel>Coffee Type</FormLabel>
                   <FormControl>
                     <Select
                       disabled={loading}
@@ -324,10 +324,10 @@ const ProductForm: React.FC<ProductFormProps> = ({
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        {colors.map((color) => {
+                        {coffeeTypes.map((coffeeType) => {
                           return (
-                            <SelectItem key={color.id} value={color.id}>
-                              {color.name}
+                            <SelectItem key={coffeeType.id} value={coffeeType.id}>
+                              {coffeeType.name}
                             </SelectItem>
                           );
                         })}

@@ -2,7 +2,7 @@ import prismadb from "@/lib/prismadb";
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 
-//create color
+//create coffeeType
 export async function POST (
   req: Request,
   {params}: {params: {projectId: string}}
@@ -39,21 +39,20 @@ export async function POST (
       return new NextResponse("Unauthorized", { status: 403 })
     }
  
-    const color = await prismadb.color.create({
+    const coffeeType = await prismadb.coffeeType.create({
       data: {
         name,
         value,
         projectId: params.projectId
       }
     });
-    return NextResponse.json(color);
+    return NextResponse.json(coffeeType);
   } catch(e) {
-    // console.log('[colors_post]', e)
     return new NextResponse("Interal error", { status: 500 })
   }
 }
 
-//get color
+//get coffeeTypes
 export async function GET(
   req: Request,
   {params}: {params: {projectId: string}}
@@ -63,14 +62,13 @@ export async function GET(
       return new NextResponse("Project ID is required", { status: 403 })
     }
  
-    const colors = await prismadb.color.findMany({
+    const coffeeTypes = await prismadb.coffeeType.findMany({
       where: {
         projectId: params.projectId
       }
     });
-    return NextResponse.json(colors);
+    return NextResponse.json(coffeeTypes);
   } catch(e) {
-    // console.log('[color_get]', e)
     return new NextResponse("Interal error", { status: 500 })
   }
 }
