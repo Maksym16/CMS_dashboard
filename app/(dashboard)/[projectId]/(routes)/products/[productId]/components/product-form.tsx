@@ -318,7 +318,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
                       <FormControl>
                         <SelectTrigger className="w-[180px]">
                           <SelectValue
-                            placeholder="Select a color"
+                            placeholder="Select a coffee type"
                             defaultValue={field.value}
                           />
                         </SelectTrigger>

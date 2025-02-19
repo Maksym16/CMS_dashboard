@@ -19,7 +19,7 @@ export async function GET(
       include: {
         images: true,
         category: true,
-        color: true,
+        coffeeType: true,
         roastType: true,
         size: true,
       },
@@ -43,7 +43,7 @@ export async function PATCH(
       name,
       price,
       categoryId,
-      colorId,
+      coffeeTypeId,
       roastTypeId,
       sizeId,
       images,
@@ -72,8 +72,8 @@ export async function PATCH(
     if (!sizeId) {
       return new NextResponse('SizeId is required', { status: 400 });
     }
-    if (!colorId) {
-      return new NextResponse('Color is required', { status: 400 });
+    if (!coffeeTypeId) {
+      return new NextResponse('CoffeeTypeId is required', { status: 400 });
     }
     if (!roastTypeId) {
       return new NextResponse('Roast Type is required', { status: 400 });
@@ -102,7 +102,7 @@ export async function PATCH(
         name,
         price,
         categoryId,
-        colorId,
+        coffeeTypeId,
         roastTypeId,
         sizeId,
         images: {
