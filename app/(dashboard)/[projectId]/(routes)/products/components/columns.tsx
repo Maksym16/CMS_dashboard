@@ -11,6 +11,7 @@ export type ProductColumn = {
   category: string,
   coffeeType: string,
   roastType: string,
+  region: string,
   description: string,
   isFeatured: boolean;
   isArchived: boolean;
@@ -47,8 +48,12 @@ export const columns: ColumnDef<ProductColumn>[] = [
     header: "Description",
   },
   {
-    accessorKey: "color",
-    header: "Color",
+    accessorKey: "region",
+    header: "Region",
+  },
+  {
+    accessorKey: "coffeeType",
+    header: "Coffee Type",
   },
   {
     accessorKey: "roastType",

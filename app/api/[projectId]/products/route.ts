@@ -17,6 +17,7 @@ export async function POST(
       categoryId,
       coffeeTypeId,
       sizeId,
+      regionId,
       roastTypeId,
       images,
       description,
@@ -51,6 +52,9 @@ export async function POST(
     if (!roastTypeId) {
       return new NextResponse('Roast Type is required', { status: 400 });
     }
+    if (!regionId) {
+      return new NextResponse('Region is required', { status: 400 });
+    }
 
     if (!params.projectId) {
       return new NextResponse('Project ID is required', { status: 400 });
@@ -75,6 +79,7 @@ export async function POST(
         sizeId,
         roastTypeId,
         description,
+        regionId,
         images: {
           createMany: {
             data: [
@@ -104,6 +109,7 @@ export async function GET(
     const categoryId = searchParams.get("categoryId") || undefined;
     const coffeeTypeId = searchParams.get("coffeeTypeId") || undefined;
     const sizeId = searchParams.get("sizeId") || undefined;
+    const regionId = searchParams.get("regionId") || undefined;
     const roastTypeId = searchParams.get("roastTypeId") || undefined;
     const isFeatured = searchParams.get("isFeatured");
 
@@ -117,6 +123,7 @@ export async function GET(
         categoryId,
         coffeeTypeId,
         sizeId,
+        regionId,
         roastTypeId,
         isFeatured: isFeatured ? true : undefined,
         isArchived: false
@@ -126,7 +133,8 @@ export async function GET(
         category: true,
         coffeeType: true,
         roastType: true,
-        size: true
+        size: true,
+        region: true,
       },
       orderBy: {
         createdAt: 'desc'

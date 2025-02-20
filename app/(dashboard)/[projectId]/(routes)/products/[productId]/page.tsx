@@ -40,6 +40,12 @@ const ProductPage = async ({
     },
   });
 
+  const regions = await prismadb.region.findMany({
+    where: {
+      projectId: params.projectId,
+    },
+  });
+
   return (
     <div className="flex-col">
       <div className="flex-1 space-y-4 p-8 pt-6">
@@ -48,6 +54,7 @@ const ProductPage = async ({
           sizes={sizes}
           coffeeTypes={coffeeTypes}
           roastTypes={roastTypes}
+          regions={regions}
           initialData={product}
         />
       </div>

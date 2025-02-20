@@ -11,18 +11,19 @@ datasource db {
 }
 
 model Project {
-  id         String      @id @default(uuid())
-  name       String
-  userId     String
-  billboards Billboard[] @relation("ProjectToBillboard")
-  categories Category[]  @relation("ProjectToCategory")
-  sizes      Size[]      @relation("ProjectToSize")
-  coffeeTypes     CoffeeType[]     @relation("ProjectToCoffeeType")
-  roastTypes RoastType[] @relation("ProjectToRoastType")
-  products   Product[]   @relation("ProjectToProduct")
-  orders     Order[]     @relation("ProjectToOrder")
-  createdAt  DateTime    @default(now())
-  updatedAt  DateTime    @updatedAt
+  id          String       @id @default(uuid())
+  name        String
+  userId      String
+  billboards  Billboard[]  @relation("ProjectToBillboard")
+  categories  Category[]   @relation("ProjectToCategory")
+  sizes       Size[]       @relation("ProjectToSize")
+  coffeeTypes CoffeeType[] @relation("ProjectToCoffeeType")
+  roastTypes  RoastType[]  @relation("ProjectToRoastType")
+  region      Region[]     @relation("ProjectToRegion")
+  products    Product[]    @relation("ProjectToProduct")
+  orders      Order[]      @relation("ProjectToOrder")
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
 }
 
 model Billboard {
@@ -92,33 +93,50 @@ model RoastType {
   @@index([projectId])
 }
 
+model Region {
+  id        String    @id @default(uuid())
+  projectId String
+  project   Project   @relation("ProjectToRegion", fields: [projectId], references: [id])
+  name      String
+  value     String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  product   Product[]
+
+  @@index([projectId])
+}
+
 model Product {
-  id          String      @id @default(uuid())
-  projectId   String
-  project     Project     @relation("ProjectToProduct", fields: [projectId], references: [id])
-  categoryId  String
-  category    Category    @relation("CategoryToProduct", fields: [categoryId], references: [id])
-  name        String
-  price       Decimal
-  isFeatured  Boolean     @default(false)
-  isArchived  Boolean     @default(false)
-  sizeId      String
-  size        Size        @relation(fields: [sizeId], references: [id])
-  coffeeTypeId     String
-  coffeeType       CoffeeType       @relation(fields: [coffeeTypeId], references: [id])
-  roastTypeId String
-  roastType   RoastType   @relation(fields: [roastTypeId], references: [id])
-  images      Image[]
-  description String
-  orderItems  OrderItem[]
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
+  id           String      @id @default(uuid())
+  projectId    String
+  project      Project     @relation("ProjectToProduct", fields: [projectId], references: [id])
+  categoryId   String
+  category     Category    @relation("CategoryToProduct", fields: [categoryId], references: [id])
+  name         String
+  price        Decimal
+  isFeatured   Boolean     @default(false)
+  isArchived   Boolean     @default(false)
+  sizeId       String
+  size         Size        @relation(fields: [sizeId], references: [id])
+  coffeeTypeId String
+  coffeeType   CoffeeType  @relation(fields: [coffeeTypeId], references: [id])
+  roastTypeId  String
+  roastType    RoastType   @relation(fields: [roastTypeId], references: [id])
+  regionId     String
+  region       Region     @relation(fields: [regionId], references: [id])
+  images       Image[]
+  description  String
+  orderItems   OrderItem[]
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+
 
   @@index([projectId])
   @@index([categoryId])
   @@index([sizeId])
   @@index([coffeeTypeId])
   @@index([roastTypeId])
+  @@index([regionId])
 }
 
 model Image {

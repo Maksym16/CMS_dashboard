@@ -26,7 +26,7 @@ import { Separator } from '@/components/ui/separator';
 import { Textarea } from '@/components/ui/textarea';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { Product, Image, Category, Size, CoffeeType, RoastType } from '@prisma/client';
+import { Product, Image, Category, Size, CoffeeType, Region, RoastType } from '@prisma/client';
 import axios from 'axios';
 import { Trash } from 'lucide-react';
 import { useParams, useRouter } from 'next/navigation';
@@ -42,6 +42,7 @@ const formSchema = z.object({
   categoryId: z.string().min(1),
   coffeeTypeId: z.string().min(1),
   roastTypeId: z.string().min(1),
+  regionId: z.string().min(1),
   description: z.string().min(1),
   sizeId: z.string().min(1),
   isFeatured: z.boolean().default(false).optional(),
@@ -53,6 +54,7 @@ export interface ProductFormProps {
   sizes: Size[];
   coffeeTypes: CoffeeType[];
   roastTypes: RoastType[];
+  regions: Region[];
   initialData:
     | (Product & {
         images: Image[];
@@ -67,7 +69,8 @@ const ProductForm: React.FC<ProductFormProps> = ({
   categories,
   sizes,
   coffeeTypes,
-  roastTypes
+  roastTypes,
+  regions
 }) => {
   const params = useParams();
   const router = useRouter();
@@ -93,6 +96,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
           coffeeTypeId: '',
           sizeId: '',
           roastTypeId: '',
+          regionId: '',
           description: '',
           isFeatured: false,
           isArchived: false,
@@ -365,6 +369,43 @@ const ProductForm: React.FC<ProductFormProps> = ({
                           return (
                             <SelectItem key={roastType.id} value={roastType.id}>
                               {roastType.name}
+                            </SelectItem>
+                          );
+                        })}
+                      </SelectContent>
+                    </Select>
+                  </FormControl>
+                  <FormDescription />
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="regionId"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Region</FormLabel>
+                  <FormControl>
+                    <Select
+                      disabled={loading}
+                      onValueChange={field.onChange}
+                      value={field.value}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger className="w-[180px]">
+                          <SelectValue
+                            placeholder="Select a region"
+                            defaultValue={field.value}
+                          />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {regions.map((region) => {
+                          return (
+                            <SelectItem key={region.id} value={region.id}>
+                              {region.name}
                             </SelectItem>
                           );
                         })}
