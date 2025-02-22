@@ -21,6 +21,7 @@ export async function GET(
         category: true,
         coffeeType: true,
         roastType: true,
+        region: true,
         size: true,
       },
     });
@@ -45,6 +46,7 @@ export async function PATCH(
       categoryId,
       coffeeTypeId,
       roastTypeId,
+      regionId,
       sizeId,
       images,
       isFeatured,
@@ -78,6 +80,9 @@ export async function PATCH(
     if (!roastTypeId) {
       return new NextResponse('Roast Type is required', { status: 400 });
     }
+    if (!regionId) {
+      return new NextResponse('Roast Type is required', { status: 400 });
+    }
 
     if (!params.productId) {
       return new NextResponse('product ID is required', { status: 400 });
@@ -104,6 +109,7 @@ export async function PATCH(
         categoryId,
         coffeeTypeId,
         roastTypeId,
+        regionId,
         sizeId,
         images: {
           deleteMany: {}
