@@ -81,7 +81,7 @@ export async function PATCH(
       return new NextResponse('Roast Type is required', { status: 400 });
     }
     if (!regionId) {
-      return new NextResponse('Roast Type is required', { status: 400 });
+      return new NextResponse('Region is required', { status: 400 });
     }
 
     if (!params.productId) {
