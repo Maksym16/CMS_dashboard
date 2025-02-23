@@ -8,7 +8,7 @@ interface RegionsPageProps {
 }
 const RegionsPage: React.FC<RegionsPageProps> = async ({ params }) => {
 
-  const sizes = await prismadb.region.findMany({
+  const regions = await prismadb.region.findMany({
     where: {
       projectId: params.projectId
     },
@@ -17,7 +17,7 @@ const RegionsPage: React.FC<RegionsPageProps> = async ({ params }) => {
     }
   })
 
-  const formattedRegions: RegionColumn[] = sizes.map((s) => {
+  const formattedRegions: RegionColumn[] = regions.map((s) => {
     return {
       id: s.id,
       name: s.name,

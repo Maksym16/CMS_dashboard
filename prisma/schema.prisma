@@ -19,7 +19,7 @@ model Project {
   sizes       Size[]       @relation("ProjectToSize")
   coffeeTypes CoffeeType[] @relation("ProjectToCoffeeType")
   roastTypes  RoastType[]  @relation("ProjectToRoastType")
-  region      Region[]     @relation("ProjectToRegion")
+  regions      Region[]     @relation("ProjectToRegion")
   products    Product[]    @relation("ProjectToProduct")
   orders      Order[]      @relation("ProjectToOrder")
   createdAt   DateTime     @default(now())
